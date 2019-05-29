@@ -2,6 +2,10 @@ package se.juneday.systemetappbasic;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import se.juneday.systemetappbasic.domain.Product;
 
 
 public class Activity3_Favoritelist extends AppCompatActivity {
@@ -13,13 +17,18 @@ public class Activity3_Favoritelist extends AppCompatActivity {
         setContentView(R.layout.activity_activity3_favoritelist);
     }
 
-    //public void onClick(View view) {
-      //  SharedPreferences sharedPreferences = getSharedPreferences("productInfo", Context.MODE_PRIVATE);
 
-       // SharedPreferences.Editor editor = sharedPreferences.edit();
-        //editor.putString("JsonArray", p.toString());
+    public void onStart() {
+        super.onStart();
 
-   // }
+        ArrayAdapter<Product> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, Session.getInstance().favorites);
+
+        ListView listView = findViewById(R.id.favorites_list);
+
+        listView.setAdapter(adapter);
+
+    }
 
 }
 
